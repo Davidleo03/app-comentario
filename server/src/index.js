@@ -10,10 +10,12 @@ app.use('/*', cors());
 // Rutas
 app.route('/comentarios', commentRoutes);
 
-app.get("/", (c) => c.json({data : "hola"}))
+app.get("/", (c) => {
+  return c.json({data : "hola"})
+})
 
 // Iniciar servidor
-const port = 4000;
+const port = 4000 || process.env.PORT
 console.log(`Servidor corriendo en http://localhost:${port}`);
 export default {
   port,
