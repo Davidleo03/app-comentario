@@ -13,7 +13,7 @@ export default function ComentarioList() {
   const fetchComentarios = async () => {
     try {
       
-      const response = await fetch('https://app-comentario.onrender.com/comentarios');
+      const response = await fetch('https://app-comentario.onrender.com/comentarios/');
       const data = await response.json(); 
       
       setComentarios(data);
@@ -25,7 +25,7 @@ export default function ComentarioList() {
   const handleNuevoComentario = async (comentario) => {
     try {
       
-      const response = await fetch('https://app-comentario.onrender.com/comentarios', {
+      const response = await fetch('https://app-comentario.onrender.com/comentarios/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
