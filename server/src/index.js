@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import commentRoutes from "./routes/comentarios.js";
 
+
 const app = express();
 
 // Configurar CORS

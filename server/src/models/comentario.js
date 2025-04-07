@@ -1,11 +1,26 @@
-import db from '../db/database.js';
+import pool from '../db/database.js';
 
-export const createComentario = (nombre, comentario, fecha) => {
-  const stmt = db.prepare('INSERT INTO comentarios (nombre, comentario, fecha) VALUES (?, ?, ?)');
-  return stmt.run(nombre, comentario, fecha);
+export const createComentario = async (nombre, comentario, fecha) => {
+  try {
+    const result = await pool.query('INSERT INTO comentarios (nombre, comentario, fecha) VALUES ($1, $2, $3)',
+      [nombre, comentario, fecha]);
+    console.log(result.rows[0])
+    return result.rows[0]
+
+  } catch (e) {
+    console.log(`Error: ${e}`)
+    return e
+  }
 };
 
-export const getAllComentarios = () => {
-  const stmt = db.prepare('SELECT * FROM comentarios ORDER BY fecha DESC');
-  return stmt.all();
+export const getAllComentarios = async () => {
+  try {
+    const result = await pool.query('SELECT * FROM comentarios ORDER BY fecha DESC');
+    return result.rows
+    
+  } catch (e) {
+    console.log(`Error: ${e}`)
+    return e
+
+  }
 };

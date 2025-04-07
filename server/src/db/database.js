@@ -1,17 +1,33 @@
-import Database from 'better-sqlite3';
+import pg from "pg"
+import { config } from "dotenv"
 
-const db = new Database('src/db/comentarios.db');
+config()
 
-console.log('Conectado a la base de datos Sqlite3')
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+})
+
+console.log('Conectado a la base de datos PostgresSql')
 
 // Crear tabla si no existe
-db.exec(`
+const createTable = async () => {
+  try {
+    await pool.query(`
   CREATE TABLE IF NOT EXISTS comentarios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
     comentario TEXT NOT NULL,
-    fecha 
+    fecha TEXT
   )
-`);
+`)
+   console.log("Tabla Creada")
 
-export default db;
+  } catch (e) {
+    console.error(`Error ${e}`)
+  }
+}
+
+createTable()
+
+export default pool;
