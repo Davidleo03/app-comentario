@@ -36,6 +36,8 @@ export default function ComentarioList() {
         }),
       });
 
+      console.log(response)
+
       if (response.ok) {
         fetchComentarios();
         setModalAbierto(false);
