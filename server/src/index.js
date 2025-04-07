@@ -5,7 +5,9 @@ import commentRoutes from "./routes/comentarios.js";
 const app = express();
 
 // Configurar CORS
-app.use(cors());
+app.use(cors({
+  origin: "https://app-comentario-two.vercel.app"
+}));
 
 // Middlewares importantes para procesar datos del frontend
 app.use(express.json());       // Para parsear JSON (si envías datos en JSON)
