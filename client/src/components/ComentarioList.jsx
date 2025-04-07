@@ -60,9 +60,9 @@ export default function ComentarioList() {
 
   return (
     <div className="container">
-      <h1>Hola {nombreUsuario}</h1>
-      <h2>Comentarios</h2>
-      <button onClick={() => setModalAbierto(true)}>Nuevo Comentario</button>
+      <h1>Hola {nombreUsuario} Bienvenido!</h1>
+      <h2></h2>
+      <button onClick={() => setModalAbierto(true)}>Agrega una palabra de la prédica de hoy</button>
       
       <div className="comentarios-list">
         {comentarios.map((comentario) => (
