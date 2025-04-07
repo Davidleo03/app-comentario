@@ -7,6 +7,10 @@ const app = express();
 // Configurar CORS
 app.use(cors());
 
+// Middlewares importantes para procesar datos del frontend
+app.use(express.json());       // Para parsear JSON (si envías datos en JSON)
+app.use(express.urlencoded({ extended: true }))
+
 // Rutas
 app.use('/comentarios', commentRoutes);
 
