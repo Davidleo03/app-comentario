@@ -12,6 +12,7 @@ commentRoutes.get('/', (req, res) => {
 // Crear nuevo comentario
 commentRoutes.post('/', async (req, res) => {
   const { nombre, comentario } =  await req.body;
+  console.log(req.body)
   const fecha = new Date().toISOString();
   
   const result = createComentario(nombre, comentario, fecha);
