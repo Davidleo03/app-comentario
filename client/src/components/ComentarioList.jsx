@@ -15,20 +15,7 @@ export default function ComentarioList() {
       
       const response = await fetch('https://app-comentario.onrender.com/comentarios');
       const data = await response.json(); 
-      const data = [
-        {
-          id : 1,
-          nombre: "David",
-          comentario : "Mi primer comentario ",
-          fecha: new Date().toISOString
-        }, 
-        {
-          id : 2,
-          nombre: "David",
-          comentario : "Mi segundo comentario ",
-          fecha: new Date().toISOString
-        }
-      ]
+      
       setComentarios(data);
     } catch (error) {
       console.error('Error al obtener comentarios:', error);
