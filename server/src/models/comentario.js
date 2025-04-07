@@ -7,6 +7,5 @@ export const createComentario = (nombre, comentario, fecha) => {
 
 export const getAllComentarios = () => {
   const stmt = db.prepare('SELECT * FROM comentarios ORDER BY fecha DESC');
-  console.log(stmt.all())
   return stmt.all();
 };

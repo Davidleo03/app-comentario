@@ -1,25 +1,25 @@
-import { Hono } from 'hono';
+import { Router } from 'express';
 import { createComentario, getAllComentarios } from '../models/comentario.js';
 
-const commentRoutes = new Hono();
+const commentRoutes = Router();
 
 // Obtener todos los comentarios
-commentRoutes.get('/', (c) => {
+commentRoutes.get('/', (req, res) => {
   const comentarios = getAllComentarios();
-  return c.json(comentarios);
+  return res.json(comentarios).status(200);
 });
 
 // Crear nuevo comentario
-commentRoutes.post('/', async (c) => {
-  const { nombre, comentario } = await c.req.json();
+commentRoutes.post('/', async (req, res) => {
+  const { nombre, comentario } =  req.body;
   const fecha = new Date().toISOString();
   
   const result = createComentario(nombre, comentario, fecha);
   
   if (result.changes > 0) {
-    return c.json({ success: true, message: 'Comentario creado' }, 201);
+    return res.json({ success: true, message: 'Comentario creado' }).status(201);
   } else {
-    return c.json({ success: false, message: 'Error al crear comentario' }, 500);
+    return res.json({ success: false, message: 'Error al crear comentario' }).status(500);
   }
 });
 
