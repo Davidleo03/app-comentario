@@ -4,13 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-<<<<<<< HEAD
+
     "dev": "node --watch src/index.js",
     "start": "node src/index.js"
-=======
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
->>>>>>> dev
   },
   "keywords": [],
   "author": "",
