@@ -10,7 +10,7 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT NOT NULL,
     comentario TEXT NOT NULL,
-    fecha TEXT NOT NULL
+    fecha 
   )
 `);
 
