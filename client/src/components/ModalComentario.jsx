@@ -19,10 +19,10 @@ export default function ModalComentario({ isOpen, onClose, onSubmit }) {
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        <h2>Nuevo Comentario</h2>
+        <h2>Palabra Ministrada por el espíritu Santo</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="comentario">Comentario:</label>
+            <label htmlFor="comentario">Que te Ministro hoy el espirutu Santo?</label>
             <textarea
               id="comentario"
               value={comentario}
