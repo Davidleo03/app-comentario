@@ -15,17 +15,10 @@ app.get("/", (req, res) => {
 })
 
 // Iniciar servidor
-<<<<<<< HEAD
+
 const port = process.env.PORT || 4000
 
-console.log(`Servidor corriendo en http://localhost:${port}`);
-export default {
-  port,
-  fetch: app.fetch,
-};
-=======
-const port = 4000 || process.env.PORT
 
 
 app.listen(port, () => console.log(`Servidor corriendo en http://localhost:${port}`))
->>>>>>> dev
+
