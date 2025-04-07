@@ -12,9 +12,9 @@ export default function ComentarioList() {
 
   const fetchComentarios = async () => {
     try {
-      /*
-      const response = await fetch('http://localhost:3000/api/comentarios');
-      const data = await response.json(); */
+      
+      const response = await fetch('https://app-comentario.onrender.com/comentarios');
+      const data = await response.json(); 
       const data = [
         {
           id : 1,
@@ -38,7 +38,7 @@ export default function ComentarioList() {
   const handleNuevoComentario = async (comentario) => {
     try {
       
-      const response = await fetch('http://localhost:3000/api/comentarios', {
+      const response = await fetch('https://app-comentario.onrender.com/comentarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
