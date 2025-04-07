@@ -4,8 +4,8 @@ import { createComentario, getAllComentarios } from '../models/comentario.js';
 const commentRoutes = Router();
 
 // Obtener todos los comentarios
-commentRoutes.get('/', (req, res) => {
-  const comentarios = getAllComentarios();
+commentRoutes.get('/', async (req, res) => {
+  const comentarios = await getAllComentarios();
   return res.json(comentarios).status(200);
 });
 
