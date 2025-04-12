@@ -1,31 +1,11 @@
 import { Router } from 'express';
-import { createComentario, getAllComentarios } from '../models/comentario.js';
+import ComentarioController from '../controllers/comentarios.js';
 
-const commentRoutes = Router();
+const ComentarioRoutes = Router();
 
-// Obtener todos los comentarios
-commentRoutes.get('/', async (req, res) => {
-  const comentarios = await getAllComentarios();
-  
-  return res.json(comentarios).status(200);
-});
+ComentarioRoutes.get("/", ComentarioController.getAll);
 
-// Crear nuevo comentario
-commentRoutes.post('/', async (req, res) => {
-  const { nombre, comentario } =  await req.body;
-
-  console.log(req.body)
-  const fecha = new Date().toISOString();
-  
-  const result = createComentario(nombre, comentario, fecha);
-  
-  if (result.changes > 0) {
-    return res.json({ success: true, message: 'Comentario creado' }).status(201);
-  } else {
-    return res.json({ success: false, message: 'Error al crear comentario' }).status(500);
-  }
-});
+ComentarioRoutes.post("/", ComentarioController.create)
 
 
-
-export default commentRoutes;
+export default ComentarioRoutes;

@@ -1,27 +1,68 @@
-import pool from '../db/database.js';
+import supabase from '../db/database.js';
 
-export const createComentario = async (nombre, comentario, fecha) => {
-  try {
-    const result = await pool.query(`INSERT INTO comentarios (nombre, comentario, fecha)
-VALUES ($1, $2, $3);`, [nombre, comentario, fecha])
-      
+
+class ComentarioModel {
+  static async getAll() {
+    const { data, error } = await supabase
+      .from('comentarios')
+      .select('*')
+      .order('fecha', { ascending: false }); // Ordenar por fecha descendente
     
-    return result.rows[0]
-
-  } catch (e) {
-    console.log(`Error: ${e}`)
-    return e
+    if (error) throw error;
+    return data;
   }
-};
 
-export const getAllComentarios = async () => {
-  try {
-    const result = await pool.query('SELECT * FROM comentarios ORDER BY fecha DESC');
-    return result.rows
+  static async getById(id) {
+    const { data, error } = await supabase
+      .from('comentarios')
+      .select('*')
+      .eq('id', id)
+      .single();
     
-  } catch (e) {
-    console.log(`Error: ${e}`)
-    return e
-
+    if (error) throw error;
+    return data;
   }
-};
+
+  static async create({ nombre, comentario }) {
+    const { data, error } = await supabase
+      .from('comentarios')
+      .insert({
+        nombre,
+        comentario,
+        fecha: new Date().toISOString() // Fecha actual automática
+      })
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return data;
+  }
+
+  static async update(id, { nombre, comentario }) {
+    const { data, error } = await supabase
+      .from('comentarios')
+      .update({
+        nombre,
+        comentario,
+        fecha: new Date().toISOString() // Actualizar fecha al modificar
+      })
+      .eq('id', id)
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return data;
+  }
+
+  static async delete(id) {
+    const { error } = await supabase
+      .from('comentarios')
+      .delete()
+      .eq('id', id);
+    
+    if (error) throw error;
+    return true;
+  }
+}
+
+export default ComentarioModel;
